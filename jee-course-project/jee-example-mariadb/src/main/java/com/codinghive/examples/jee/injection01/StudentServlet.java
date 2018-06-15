@@ -25,6 +25,13 @@ public class StudentServlet extends HttpServlet {
         if (studentIdStr != null && !studentIdStr.equals("")) {
             studentId = Integer.parseInt(studentIdStr);
         }
+        //get userName and pass from index and store them to the loginUsername and loginPassword
+        String loginUsername = request.getParameter("loginUsername");
+        String loginPassword = request.getParameter("loginPassword");
+        System.out.println("StudentServlet class. This is the loginUsername provided from the html "+loginUsername);
+        System.out.println("StudentServlet class. This is the loginPassword provided from the html "+ loginPassword);
+        
+        
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String userName = request.getParameter("userName");
@@ -37,7 +44,10 @@ public class StudentServlet extends HttpServlet {
         }
 
         Student student = new Student(studentId, firstname, lastname, userName, password, yearLevel);
-
+        
+        if("login".equalsIgnoreCase(action)) {
+            studentDao.login(loginUsername , loginPassword);
+        }
         if ("Add".equalsIgnoreCase(action)) {
             studentDao.addStudent(student);
         }

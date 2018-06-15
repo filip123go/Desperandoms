@@ -7,6 +7,8 @@ import javax.ejb.Local;
 
 @Local
 public interface StudentDaoLocal {
+	
+	void login( String loginUsername, String loginPassword);
 
     void addStudent(Student student);
 
