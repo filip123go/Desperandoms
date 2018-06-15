@@ -18,6 +18,14 @@ public class StudentDao implements StudentDaoLocal {
 
     @PersistenceContext(unitName = STUDENT_PU)
     private EntityManager em;
+    
+    public void login(String loginUsername,String loginPassword) {
+    	Student student  = new Student();
+    	String loginUsernameFromDb = student.getPassword(); 
+    	System.out.println("StudentDao class.  This is the password from the db : " + " "+loginUsernameFromDb);
+    	System.out.println("StudentDao class. here will go the username and pass for login, these variables are from inside login function " + " "+loginUsername + " " +loginPassword );
+    	
+    }
 
     public void addStudent(Student student) {
     	em.getTransaction().begin();
@@ -40,7 +48,7 @@ public class StudentDao implements StudentDaoLocal {
     }
 
     public List<Student> getAllStudents() {
-        return em.createNamedQuery("Student.getAll").getResultList();
+		return em.createNamedQuery("Student.getAll").getResultList();
     }
 
 }

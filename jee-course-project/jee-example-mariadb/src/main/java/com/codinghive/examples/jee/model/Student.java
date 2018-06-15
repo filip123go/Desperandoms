@@ -5,7 +5,11 @@ import java.io.Serializable;
 
 @Entity
 @Table
-@NamedQueries({ @NamedQuery(name = "Student.getAll", query = "SELECT e FROM Student e") })
+@NamedQueries({
+	
+	@NamedQuery(name = "Student.getAll", query = "SELECT e FROM Student e") , @NamedQuery(name = "login", query = "SELECT e FROM Student e") 
+	
+})
 public class Student implements Serializable {
 
     @Id

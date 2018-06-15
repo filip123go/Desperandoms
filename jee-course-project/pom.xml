@@ -27,20 +27,7 @@
 
 
     <modules>
-    <!--
-        <module>jee-example</module>
-        <module>cdi-01-injection</module>
-        <module>cdi-02-injection</module>
-        <module>cdi-03-injection</module>
-        <module>cdi-04-interceptor</module>
-        <module>ejb-01</module>
-        <module>ejb-02-singleton</module>
-        <module>ejb-03-lifecycle</module>
-        <module>ejb-04-async</module>
-        <module>ejb-05-test</module>
-        -->
         <module>jee-example-mariadb</module>
-<!--		 <module>jee-example-mariadb-orm-basics</module>-->
     </modules>
 
     <build>
