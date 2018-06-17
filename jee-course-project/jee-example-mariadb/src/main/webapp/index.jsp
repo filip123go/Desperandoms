@@ -117,7 +117,7 @@
                                 <td>${stud.firstname}</td>
                                 <td>${stud.lastname}</td>
                                 <td>${stud.userName}</td>
-                                <td><button class="reserve_button" id=${stud.studentId} value=${stud.studentId} onClick=reserveTicket(${stud.studentId})> ${stud.password}  </button> </td>
+                                <td><button class="reserve_button" id=${stud.studentId} value=${stud.studentId} onClick=reserveTicket(${stud.studentId})> Reserve  </button> </td>
                           <!--    <td>${stud.yearLevel}</td>  --> 
                             </tr>
                         </c:forEach>
@@ -158,9 +158,28 @@
                     }
 
                     function reserveTicket(ticket_number) {
+                        alert(ticket_number);
+                    	var dataString ={"ticket_number":ticket_number,"action":"add"};
+
+                    	$.ajax({
+                            type: "POST",
+                            data:dataString,
+                            url: "./StudentServlet",
+                            success: function(){
+                                console.log("success");
+                            //pairno ta dedomena
+                            //$('#results').show();
+
+                            //vazo ta dedomena sto results div tag.
+                            //$('#results').html(data);
+                        }
+                     });
+
+
+                    	
                         $("#" + ticket_number).html("Reserved");
                         $("#" + ticket_number).attr("disabled", "disabled");
-                        alert("Ticket Reserved");
+                       // alert("Ticket Reserved");
                     }
 
 

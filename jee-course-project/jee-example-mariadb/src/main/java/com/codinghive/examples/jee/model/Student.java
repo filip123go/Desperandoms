@@ -14,21 +14,22 @@ public class Student implements Serializable {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int studentId;
 
-    @Column
+    @Column(name="firstname")
     private String firstname;
 
-    @Column
+    @Column(name="lastname")
     private String lastname;
 
-    @Column
+    @Column(name="yearLevel")
     private int yearLevel;
     
-    @Column
+    @Column(name="userName")
     private String userName;
     
-    @Column
+    @Column(name="password")
     private String password;
         
     
@@ -54,9 +55,9 @@ public class Student implements Serializable {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
+//    public void setStudentId(int studentId) {
+//        this.studentId = studentId;
+//    }
 
     public String getFirstname() {
         return firstname;

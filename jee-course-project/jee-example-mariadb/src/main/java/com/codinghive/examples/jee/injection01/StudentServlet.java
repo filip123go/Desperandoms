@@ -28,9 +28,10 @@ public class StudentServlet extends HttpServlet {
         //get userName and pass from index and store them to the loginUsername and loginPassword
         String loginUsername = request.getParameter("loginUsername");
         String loginPassword = request.getParameter("loginPassword");
-        System.out.println("StudentServlet class. This is the loginUsername provided from the html "+loginUsername);
-        System.out.println("StudentServlet class. This is the loginPassword provided from the html "+ loginPassword);
-        
+       // System.out.println("StudentServlet class. This is the loginUsername provided from the html "+loginUsername);
+       // System.out.println("StudentServlet class. This is the loginPassword provided from the html "+ loginPassword);
+        String ticket_number = request.getParameter("ticket_number");
+         System.out.println("StudentServlet class. This is the ticket_number provided from the html "+ ticket_number);
         
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
@@ -49,7 +50,8 @@ public class StudentServlet extends HttpServlet {
             studentDao.login(loginUsername , loginPassword);
         }
         if ("Add".equalsIgnoreCase(action)) {
-            studentDao.addStudent(student);
+        	System.out.println("I AM ISIDE ADD IF");
+            //studentDao.addStudent(student);
         }
         else if ("Edit".equalsIgnoreCase(action)) {
             studentDao.editStudent(student);
