@@ -20,14 +20,23 @@ public class StudentServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        String studentIdStr = request.getParameter("studentId");
-        int studentId = 0;
+        String studentIdStr = request.getParameter("ticketId");
+        int ticketId = 0;
         if (studentIdStr != null && !studentIdStr.equals("")) {
-            studentId = Integer.parseInt(studentIdStr);
+            ticketId = Integer.parseInt(studentIdStr);
         }
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String userName = request.getParameter("userName");
+        //get price and pass from index and store them to the loginprice and loginPassword
+        String loginprice = request.getParameter("loginprice");
+        String loginPassword = request.getParameter("loginPassword");
+       // System.out.println("StudentServlet class. This is the loginprice provided from the html "+loginprice);
+       // System.out.println("StudentServlet class. This is the loginPassword provided from the html "+ loginPassword);
+        String ticket_number = request.getParameter("ticket_number");
+        String isReserved = request.getParameter("isReserved");
+         System.out.println("StudentServlet class. This is the ticket_number provided from the html "+ ticket_number);
+        
+        String eventName = request.getParameter("eventName");
+        String location = request.getParameter("location");
+        String price = request.getParameter("price");
         String password = request.getParameter("password");
         String yearLevelStr = request.getParameter("yearLevel");
 
@@ -36,23 +45,53 @@ public class StudentServlet extends HttpServlet {
             yearLevel = Integer.parseInt(yearLevelStr);
         }
 
-        Student student = new Student(studentId, firstname, lastname, userName, password, yearLevel);
-
+        Student student = new Student(ticketId, eventName, location, price, password, yearLevel);
+        
+//        switch(action.toLowerCase()) {
+//        case "login":
+//        	studentDao.login(loginprice , loginPassword);
+//        	break;
+//        case "add": 
+//        	studentDao.addStudent(student);
+//        	break;
+//        case "edit":
+//        	 studentDao.editStudent(student);
+//        	 break;
+//        case "delete":
+//        	studentDao.deleteStudent(ticketId);
+//        	break;
+//        case "search" :
+//        	student = studentDao.getStudent(ticketId);
+//        	break;
+//        case "reserve":
+//        	System.out.println("Ticket reserved");
+//        }
+        
+        if("login".equalsIgnoreCase(action)) {
+            studentDao.login(loginprice , loginPassword);
+        }
         if ("Add".equalsIgnoreCase(action)) {
             studentDao.addStudent(student);
-        }
-        else if ("Edit".equalsIgnoreCase(action)) {
+            
+        } else if ("Edit".equalsIgnoreCase(action)) {
             studentDao.editStudent(student);
-        }
-        else if ("Delete".equalsIgnoreCase(action)) {
-            studentDao.deleteStudent(studentId);
-        }
-        else if ("Search".equalsIgnoreCase(action)) {
-            student = studentDao.getStudent(studentId);
+            
+        } else if ("Delete".equalsIgnoreCase(action)) {
+            studentDao.deleteStudent(ticketId);
+            
+            
+        } else if ("Search".equalsIgnoreCase(action)) {
+            student = studentDao.getStudent(ticketId);
+            
+        }else if("reserve".equalsIgnoreCase(action)){
+        	System.out.println("Ticket reserved");
+        	System.out.println("StudentServlet class. This is the ticket_number provided from the html : "+ ticket_number);
+        	System.out.println("StudentServlet class. This is the isReserved provided from the html : "+ isReserved);
         }
 
         request.setAttribute("student", student);
         request.setAttribute("allStudents", studentDao.getAllStudents());
+        request.setAttribute("reserved", studentDao.getReservedTickets());
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

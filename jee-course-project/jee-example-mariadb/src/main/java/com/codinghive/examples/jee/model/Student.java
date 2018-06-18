@@ -5,26 +5,31 @@ import java.io.Serializable;
 
 @Entity
 @Table
-@NamedQueries({ @NamedQuery(name = "Student.getAll", query = "SELECT e FROM Student e") })
+@NamedQueries({
+	
+	@NamedQuery(name = "Student.getAll", query = "SELECT e FROM Student e"),
+	@NamedQuery(name = "Student.isReserved", query = "SELECT e FROM Student e  WHERE e.password = 0")
+	
+})
 public class Student implements Serializable {
 
     @Id
     @Column
-    private int studentId;
+    private int ticketId;
 
-    @Column
-    private String firstname;
+    @Column(name="eventName")
+    private String eventName;
 
-    @Column
-    private String lastname;
+    @Column(name="location")
+    private String location;
 
-    @Column
+    @Column(name="yearLevel")
     private int yearLevel;
     
-    @Column
-    private String userName;
+    @Column(name="price")
+    private String price;
     
-    @Column
+    @Column(name="password")
     private String password;
         
     
@@ -36,38 +41,38 @@ public class Student implements Serializable {
 		this.password = password;
 	}
 
-	public String getUserName() {
-    	return userName;
+	public String getprice() {
+    	return price;
     }
     
-    public void seUserName(String userName) {
-        this.userName = userName;
+    public void seprice(String price) {
+        this.price = price;
     }
     
     
 
-    public int getStudentId() {
-        return studentId;
+    public int getticketId() {
+        return ticketId;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setticketId(int ticketId) {
+        this.ticketId = ticketId;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String geteventName() {
+        return eventName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void seteventName(String eventName) {
+        this.eventName = eventName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getlocation() {
+        return location;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setlocation(String location) {
+        this.location = location;
     }
 
     public int getYearLevel() {
@@ -78,11 +83,11 @@ public class Student implements Serializable {
         this.yearLevel = yearLevel;
     }
 
-    public Student(int studentId , String firstname , String lastname , String userName , String password , int yearLevel) {
-        this.studentId = studentId;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.userName = userName;
+    public Student(int ticketId , String eventName , String location , String price , String password , int yearLevel) {
+        this.ticketId = ticketId;
+        this.eventName = eventName;
+        this.location = location;
+        this.price = price;
         this.password = password;
         this.yearLevel = yearLevel;
     }
@@ -92,7 +97,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" + "studentId=" + studentId + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\''
+        return "Student{" + "ticketId=" + ticketId + ", eventName='" + eventName + '\'' + ", location='" + location + '\''
                 + ", yearLevel=" + yearLevel + '}';
     }
 }

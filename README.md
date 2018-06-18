@@ -1,2 +1,2 @@
-# Desperandoms
-Contains the Marketplace project for Coding Hive 2018
+# DesperandomsProject
+Contains the Ticket Monster project for Coding Hive 2018

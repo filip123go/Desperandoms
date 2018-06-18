@@ -9,7 +9,7 @@ public class StudentTest {
     @Test
     public void test() {
 //        Student student = new Student();
-//        student.setLastname("Federer");
-//        Assert.assertTrue(student.getLastname().equals("Federer"));
+//        student.setlocation("Federer");
+//        Assert.assertTrue(student.getlocation().equals("Federer"));
     }
 }
